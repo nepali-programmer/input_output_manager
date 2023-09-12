@@ -1,3 +1,4 @@
+import 'package:input_output_manager/model/output_audio_device.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'input_output_manager_method_channel.dart';
@@ -8,7 +9,8 @@ abstract class InputOutputManagerPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static InputOutputManagerPlatform _instance = MethodChannelInputOutputManager();
+  static InputOutputManagerPlatform _instance =
+      MethodChannelInputOutputManager();
 
   /// The default instance of [InputOutputManagerPlatform] to use.
   ///
@@ -23,7 +25,7 @@ abstract class InputOutputManagerPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  Future<List<OutputAudioDecice>?> getOutputDevices() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }
