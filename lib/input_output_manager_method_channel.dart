@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:input_output_manager/model/output_audio_device.dart';
 
 import 'input_output_manager_platform_interface.dart';
 
@@ -10,8 +11,9 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
   final methodChannel = const MethodChannel('input_output_manager');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+  Future<List<OutputAudioDecice>?> getOutputDevices() async {
+    final version = await methodChannel
+        .invokeMethod<List<OutputAudioDecice>>('getOutputDevices');
     return version;
   }
 }

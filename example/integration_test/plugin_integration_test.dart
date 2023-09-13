@@ -6,8 +6,8 @@
 // For more information about Flutter integration tests, please see
 // https://docs.flutter.dev/cookbook/testing/integration/introduction
 
-
 import 'package:flutter_test/flutter_test.dart';
+import 'package:input_output_manager/model/output_audio_device.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'package:input_output_manager/input_output_manager.dart';
@@ -17,7 +17,7 @@ void main() {
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
     final InputOutputManager plugin = InputOutputManager();
-    final String? version = await plugin.getPlatformVersion();
+    final List<OutputAudioDecice>? version = await plugin.getOutputDevices();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
     expect(version?.isNotEmpty, true);
