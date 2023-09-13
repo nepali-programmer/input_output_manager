@@ -36,12 +36,15 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
           Log.d(Companion.TAG, "Get output devices initiated")
           val outputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getOutputAudioDevices(applicationContext)
           Log.d(Companion.TAG, outputDevices.toString())
+          result.success(outputDevices.toString())
+
 
         }
         "getInputDevices" -> {
           Log.d(Companion.TAG, "Get input devices initiated")
           val inputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getInputAudioDevices(applicationContext)
           Log.d(Companion.TAG, inputDevices.toString())
+          result.success(inputDevices.toString())
 
         }
         else -> {
