@@ -9,7 +9,10 @@ class MockInputOutputManagerPlatform
     with MockPlatformInterfaceMixin
     implements InputOutputManagerPlatform {
   @override
-  Future<List<OutputAudioDecice>?> getOutputDevices() => Future.value([]);
+  Future<List<AudioDeviceInformation>?> getOutputDevices() => Future.value([]);
+
+  @override
+  Future<List<AudioDeviceInformation>?> getInputDevices() => Future.value([]);
 }
 
 void main() {

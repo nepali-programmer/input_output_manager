@@ -1,35 +1,58 @@
 package com.example.input_output_manager
 
-import androidx.annotation.NonNull
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
+import np.com.joshisijan.input_output_manager.InputOutputDevices
+import android.content.Context
+import android.media.AudioDeviceInfo
+import android.util.Log
 
 /** InputOutputManagerPlugin */
 class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
+  companion object {
+    const val TAG="TwilioVoice"
+  }
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
+  private lateinit var applicationContext: Context
+  val inputOutputDevices : InputOutputDevices = InputOutputDevices()
+
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "input_output_manager")
     channel.setMethodCallHandler(this)
+    applicationContext = flutterPluginBinding.applicationContext
+
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+    when (call.method) {
+        "getOutputDevices" -> {
+          Log.d(Companion.TAG, "Get output devices initiated")
+          val outputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getOutputAudioDevices(applicationContext)
+          Log.d(Companion.TAG, outputDevices.toString())
+
+        }
+        "getInputDevices" -> {
+          Log.d(Companion.TAG, "Get input devices initiated")
+          val inputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getInputAudioDevices(applicationContext)
+          Log.d(Companion.TAG, inputDevices.toString())
+
+        }
+        else -> {
+          result.notImplemented()
+        }
     }
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }
+
+
 }

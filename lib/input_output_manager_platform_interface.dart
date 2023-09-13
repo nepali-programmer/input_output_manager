@@ -25,7 +25,6 @@ abstract class InputOutputManagerPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<List<OutputAudioDecice>?> getOutputDevices() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+  Future<List<AudioDeviceInformation>?> getOutputDevices();
+  Future<List<AudioDeviceInformation>?> getInputDevices();
 }

@@ -1,7 +1,7 @@
-class OutputAudioDecice {
+class AudioDeviceInformation {
   final String? name;
 
-  OutputAudioDecice({
+  AudioDeviceInformation({
     this.name,
   });
 }

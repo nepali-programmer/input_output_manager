@@ -11,9 +11,14 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
   final methodChannel = const MethodChannel('input_output_manager');
 
   @override
-  Future<List<OutputAudioDecice>?> getOutputDevices() async {
-    final version = await methodChannel
-        .invokeMethod<List<OutputAudioDecice>>('getOutputDevices');
-    return version;
+  Future<List<AudioDeviceInformation>?> getOutputDevices() async {
+    final outputDevices = await methodChannel.invokeMethod('getOutputDevices');
+    return outputDevices;
+  }
+
+  @override
+  Future<List<AudioDeviceInformation>?> getInputDevices() async {
+    final inputDevices = await methodChannel.invokeMethod('getInputDevices');
+    return inputDevices;
   }
 }

@@ -17,7 +17,8 @@ void main() {
 
   testWidgets('getPlatformVersion test', (WidgetTester tester) async {
     final InputOutputManager plugin = InputOutputManager();
-    final List<OutputAudioDecice>? version = await plugin.getOutputDevices();
+    final List<AudioDeviceInformation>? version =
+        await plugin.getOutputDevices();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
     expect(version?.isNotEmpty, true);
