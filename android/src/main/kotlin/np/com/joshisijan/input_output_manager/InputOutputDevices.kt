@@ -20,7 +20,8 @@ class InputOutputDevices {
             val audioManager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
             Log.d(TAG,"audioManager Instantiated" )
             val outputDevices :Array<AudioDeviceInfo>? =  audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-            Log.d(TAG, outputDevices.toString())
+
+            Log.d(TAG, outputDevices?.count().toString())
             outputDevices
 
         } catch (e: Exception){
@@ -38,7 +39,7 @@ class InputOutputDevices {
                 val audioManager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
             Log.d(TAG,"audioManager Instantiated" )
                 val inputDevices : Array<AudioDeviceInfo>? =  audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS)
-                Log.d(TAG, inputDevices.toString())
+                Log.d(TAG, inputDevices?.count().toString())
                 inputDevices
 
         }catch (e: Exception){

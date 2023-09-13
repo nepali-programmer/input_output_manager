@@ -13,7 +13,7 @@ import android.util.Log
 /** InputOutputManagerPlugin */
 class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
   companion object {
-    const val TAG="TwilioVoice"
+    const val TAG="InputOutputManagerPlugin"
   }
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
