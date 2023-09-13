@@ -1,4 +1,4 @@
-package com.example.input_output_manager
+package np.com.joshisijan.input_output_manager
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodChannel.Result
