@@ -57,7 +57,7 @@ class InputOutputDevices {
                     Log.d(TAG, item.toString())
                     Log.d(TAG, item.productName.toString())
                     Log.d(TAG, item.id.toString())
-                    Log.d(TAG, item.type.toString())
+                    Log.d(TAG, item.type  .toString())
                     Log.d(TAG, "**************************")
 
 
