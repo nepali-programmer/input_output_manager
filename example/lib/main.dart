@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:input_output_manager_example/android_screen.dart';
+import 'package:input_output_manager_example/ios_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +23,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(),
+    return MaterialApp(
+      home: Platform.isAndroid ? const AndroidScreen() : const IosScreen(),
     );
   }
 }
