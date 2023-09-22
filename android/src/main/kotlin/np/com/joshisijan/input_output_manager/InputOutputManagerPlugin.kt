@@ -1,14 +1,14 @@
 package np.com.joshisijan.input_output_manager
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
-import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import np.com.joshisijan.input_output_manager.InputOutputDevices
 import android.content.Context
 import android.media.AudioDeviceInfo
 import android.util.Log
+import com.google.gson.Gson
+
 
 /** InputOutputManagerPlugin */
 class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
@@ -35,18 +35,20 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
     when (call.method) {
         "getOutputDevices" -> {
           val outputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getOutputAudioDevices(applicationContext)
-          val outputDevicesJson = outputDevices?.map { deviceInfo ->
+          val outputDevicesMap = outputDevices?.map { deviceInfo ->
             mapOf(
               "id" to deviceInfo.id,
               "type" to deviceInfo.type,
               "name" to deviceInfo.productName,
-               "address" to deviceInfo.address,
+              "address" to deviceInfo.address,
 
               // Add other properties you want to include
             )
           }
-          Log.d(Companion.TAG, outputDevicesJson.toString())
-          result.success(outputDevicesJson)
+          val gson = Gson()
+          val jsonString = gson.toJson(outputDevicesMap)
+          Log.d(Companion.TAG, jsonString)
+          result.success(outputDevicesMap)
           Log.d(Companion.TAG, "Result Sent")
 
 

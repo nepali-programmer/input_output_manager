@@ -20,7 +20,7 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
           await methodChannel.invokeMethod('getOutputDevices');
       try {
         if (outputDevicesJson != null) {
-          final List<dynamic> outputDevicesList = jsonDecode(outputDevicesJson);
+          final outputDevicesList = jsonDecode(outputDevicesJson);
           print(TAG + outputDevicesList.toString());
           final List<AudioDeviceInformation> outputDevices =
               outputDevicesList.map((deviceJson) {
