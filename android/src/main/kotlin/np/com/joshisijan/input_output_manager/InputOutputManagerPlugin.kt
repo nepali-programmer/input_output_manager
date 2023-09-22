@@ -40,7 +40,7 @@ class InputOutputManagerPlugin: FlutterPlugin,   MethodCallHandler {
               "id" to deviceInfo.id,
               "type" to deviceInfo.type,
               "name" to deviceInfo.productName,
-              "address" to deviceInfo.address,
+
 
               // Add other properties you want to include
             )
