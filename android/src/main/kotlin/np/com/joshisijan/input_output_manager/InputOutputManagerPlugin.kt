@@ -11,7 +11,7 @@ import com.google.gson.Gson
 
 
 /** InputOutputManagerPlugin */
-class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
+class InputOutputManagerPlugin: FlutterPlugin,   MethodCallHandler {
   companion object {
     const val TAG="InputOutputManagerPlugin"
   }
@@ -31,7 +31,7 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
 
   }
 
-  override fun onMethodCall(call: MethodCall, result: Result) {
+  override fun onMethodCall(call: MethodCall, result: Result<Any?>) {
     when (call.method) {
         "getOutputDevices" -> {
           val outputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getOutputAudioDevices(applicationContext)
