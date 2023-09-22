@@ -34,9 +34,7 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(call: MethodCall, result: Result) {
     when (call.method) {
         "getOutputDevices" -> {
-          Log.d(Companion.TAG, "Get output devices initiated")
           val outputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getOutputAudioDevices(applicationContext)
-          Log.d(Companion.TAG, outputDevices.toString())
           val outputDevicesJson = outputDevices?.map { deviceInfo ->
             mapOf(
               "id" to deviceInfo.id,
@@ -49,6 +47,7 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
           }
           Log.d(Companion.TAG, outputDevicesJson.toString())
           result.success(outputDevicesJson)
+          Log.d(Companion.TAG, "Result Sent")
 
 
         }

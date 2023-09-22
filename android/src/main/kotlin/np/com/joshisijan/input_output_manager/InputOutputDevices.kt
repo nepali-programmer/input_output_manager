@@ -16,24 +16,9 @@ class InputOutputDevices {
     fun getOutputAudioDevices(context: Context): Array<AudioDeviceInfo>? {
 
         return try{
-            Log.d(TAG,"getOutputAudioDevices invoked" )
 
             val audioManager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-            Log.d(TAG,"audioManager Instantiated" )
             val outputDevices :Array<AudioDeviceInfo>? =  audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
-            if (outputDevices != null) {
-                for(item in outputDevices){
-                    Log.d(TAG, item.toString())
-                    Log.d(TAG, item.productName.toString())
-                    Log.d(TAG, item.id.toString())
-                    Log.d(TAG, item.type.toString())
-                    Log.d(TAG, "**************************")
-
-
-                }
-            }
-
-            Log.d(TAG, outputDevices?.count().toString())
             outputDevices
 
         } catch (e: Exception){

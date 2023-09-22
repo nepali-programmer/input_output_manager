@@ -14,17 +14,28 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
 
   @override
   Future<List<AudioDeviceInformation>?> getOutputDevices() async {
-    final outputDevicesJson =
-        await methodChannel.invokeMethod('getOutputDevices');
-    if (outputDevicesJson != null) {
-      final List<dynamic> outputDevicesList = jsonDecode(outputDevicesJson);
-      final List<AudioDeviceInformation> outputDevices =
-          outputDevicesList.map((deviceJson) {
-        return AudioDeviceInformation.fromJson(deviceJson);
-      }).toList();
-      return outputDevices;
-    } else {
-      return null;
+    const String TAG = "AUDIO MANAGER DART";
+    try {
+      final outputDevicesJson =
+          await methodChannel.invokeMethod('getOutputDevices');
+      try {
+        if (outputDevicesJson != null) {
+          final List<dynamic> outputDevicesList = jsonDecode(outputDevicesJson);
+          print(TAG + outputDevicesList.toString());
+          final List<AudioDeviceInformation> outputDevices =
+              outputDevicesList.map((deviceJson) {
+            return AudioDeviceInformation.fromJson(deviceJson);
+          }).toList();
+          print('${TAG}json parsed $outputDevices');
+          return outputDevices;
+        } else {
+          return null;
+        }
+      } catch (e) {
+        print('This is exception in dart part $e');
+      }
+    } catch (e) {
+      print(TAG + "Got exception during invoke method");
     }
   }
 
