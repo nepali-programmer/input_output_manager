@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:input_output_manager_example/android_screen.dart';
-import 'package:input_output_manager_example/ios_screen.dart';
+import 'package:input_output_manager_example/ios_screen/ios_screen.dart';
 
 void main() {
   runApp(const MyApp());

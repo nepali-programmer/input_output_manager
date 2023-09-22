@@ -17,6 +17,7 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
     final outputDevicesJson =
         await methodChannel.invokeMethod('getOutputDevices');
     if (outputDevicesJson != null) {
+      print('apple' + outputDevicesJson.toString());
       final List<dynamic> outputDevicesList = jsonDecode(outputDevicesJson);
       final List<AudioDeviceInformation> outputDevices =
           outputDevicesList.map((deviceJson) {

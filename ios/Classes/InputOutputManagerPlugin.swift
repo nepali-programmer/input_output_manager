@@ -1,6 +1,5 @@
 import Flutter
 import UIKit
-import InputOutputManager
 
 public class InputOutputManagerPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -12,8 +11,8 @@ public class InputOutputManagerPlugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
     case "getOutputDevices":      
-        let inputOutputManager = InputOutputManager();
-        inputOutputManager.getOutputDevices(<#T##FlutterMethodCall#>, result: <#T##FlutterResult#>);
+        let inputOutputManager = InputOutputManager()
+        inputOutputManager.getOutputDevices(call, result: result)
     default:
       result(FlutterMethodNotImplemented)
     }
