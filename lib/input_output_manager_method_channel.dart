@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:input_output_manager/model/output_audio_device.dart';
@@ -12,8 +14,18 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
 
   @override
   Future<List<AudioDeviceInformation>?> getOutputDevices() async {
-    final outputDevices = await methodChannel.invokeMethod('getOutputDevices');
-    return outputDevices;
+    final outputDevicesJson =
+        await methodChannel.invokeMethod('getOutputDevices');
+    if (outputDevicesJson != null) {
+      final List<dynamic> outputDevicesList = jsonDecode(outputDevicesJson);
+      final List<AudioDeviceInformation> outputDevices =
+          outputDevicesList.map((deviceJson) {
+        return AudioDeviceInformation.fromJson(deviceJson);
+      }).toList();
+      return outputDevices;
+    } else {
+      return null;
+    }
   }
 
   @override
