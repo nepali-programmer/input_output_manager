@@ -37,7 +37,18 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
           Log.d(Companion.TAG, "Get output devices initiated")
           val outputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getOutputAudioDevices(applicationContext)
           Log.d(Companion.TAG, outputDevices.toString())
-          result.success(outputDevices.toString())
+          val outputDevicesJson = outputDevices?.map { deviceInfo ->
+            mapOf(
+              "id" to deviceInfo.id,
+              "type" to deviceInfo.type,
+              "name" to deviceInfo.productName,
+               "address" to deviceInfo.address,
+
+              // Add other properties you want to include
+            )
+          }
+          Log.d(Companion.TAG, outputDevicesJson.toString())
+          result.success(outputDevicesJson)
 
 
         }
@@ -45,7 +56,6 @@ class InputOutputManagerPlugin: FlutterPlugin, MethodCallHandler {
           Log.d(Companion.TAG, "Get input devices initiated")
           val inputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getInputAudioDevices(applicationContext)
           Log.d(Companion.TAG, inputDevices.toString())
-
           result.success(inputDevices.toString())
 
         }
