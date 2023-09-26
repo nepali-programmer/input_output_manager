@@ -6,4 +6,8 @@ class InputOutputManager {
   Future<List<AudioDeviceInformation>?> getOutputDevices() async {
     return await InputOutputManagerPlatform.instance.getOutputDevices();
   }
+
+  Future<void> setSpeakerOn() async {
+    return await InputOutputManagerPlatform.instance.setSpeakerOn();
+  }
 }

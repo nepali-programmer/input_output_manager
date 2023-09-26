@@ -44,4 +44,9 @@ class MethodChannelInputOutputManager extends InputOutputManagerPlatform {
     final inputDevices = await methodChannel.invokeMethod('getInputDevices');
     return inputDevices;
   }
+
+  @override
+  Future<void> setSpeakerOn() async {
+    await methodChannel.invokeMethod('setSpeakerOn');
+  }
 }

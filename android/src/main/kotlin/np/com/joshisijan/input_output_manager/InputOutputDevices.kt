@@ -60,4 +60,10 @@ class InputOutputDevices {
     }
 
 
+  fun  getCurrentOutputDevice(context: Context){
+      val audioManager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+      audioManager.isSpeakerphoneOn=true
+    }
+
+
 }

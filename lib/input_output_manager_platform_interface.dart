@@ -27,4 +27,5 @@ abstract class InputOutputManagerPlatform extends PlatformInterface {
 
   Future<List<AudioDeviceInformation>?> getOutputDevices();
   Future<List<AudioDeviceInformation>?> getInputDevices();
+  Future<void> setSpeakerOn();
 }

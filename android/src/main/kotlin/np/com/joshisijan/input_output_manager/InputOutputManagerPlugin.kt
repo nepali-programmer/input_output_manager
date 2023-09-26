@@ -22,6 +22,7 @@ class InputOutputManagerPlugin: FlutterPlugin,   MethodCallHandler {
   private lateinit var channel : MethodChannel
   private lateinit var applicationContext: Context
   val inputOutputDevices : InputOutputDevices = InputOutputDevices()
+  val audioController : AudioController = AudioController()
 
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -58,6 +59,12 @@ class InputOutputManagerPlugin: FlutterPlugin,   MethodCallHandler {
           val inputDevices : Array<AudioDeviceInfo>? =  inputOutputDevices.getInputAudioDevices(applicationContext)
           Log.d(Companion.TAG, inputDevices.toString())
           result.success(inputDevices.toString())
+
+        }
+        "setSpeakerOn" -> {
+          Log.d(Companion.TAG, "Set speaker on initiated")
+          audioController.setSpeakerOn(applicationContext)
+
 
         }
         else -> {
